@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Customizing Material3 for Unique Tracks, Thumbs, and Animations">
+<title>Beyond the Straight Line: Crafting Wavy Sliders in Jetpack Compose</title>
+
+<link rel='canonical' href='https://kishai.codes/post/wavy-slider-animation-using-jetpack-compose/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Beyond the Straight Line: Crafting Wavy Sliders in Jetpack Compose">
+<meta property='og:description' content="Customizing Material3 for Unique Tracks, Thumbs, and Animations">
+<meta property='og:url' content='https://kishai.codes/post/wavy-slider-animation-using-jetpack-compose/'>
+<meta property='og:site_name' content='Ruslan Kishai'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-12-04T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-12-04T00:00:00&#43;00:00'/><meta property='og:image' content='https://kishai.codes/wavy-slider-animation-using-jetpack-compose/cover.png' />
+<meta name="twitter:title" content="Beyond the Straight Line: Crafting Wavy Sliders in Jetpack Compose">
+<meta name="twitter:description" content="Customizing Material3 for Unique Tracks, Thumbs, and Animations"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://kishai.codes/wavy-slider-animation-using-jetpack-compose/cover.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-KEX51BH99Y"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-KEX51BH99Y');
+        }
+      </script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu15390084116014489075.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Ruslan Kishai</a></h1>
+            <h2 class="site-description">Android Magician</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/creageek'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.linkedin.com/in/ruslankishai/'
+                        target="_blank"
+                        title="LinkedIn"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="currentColor" d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"/></svg>
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#project-foundations">Project Foundations</a></li>
+    <li><a href="#exploring-the-material3-slider">Exploring the Material3 Slider</a></li>
+    <li><a href="#the-mathematics-of-waves">The Mathematics of Waves</a></li>
+    <li><a href="#crafting-a-wavy-track">Crafting a Wavy Track</a></li>
+    <li><a href="#animating-the-wave">Animating the Wave</a></li>
+    <li><a href="#final-thoughts-and-next-steps">Final Thoughts and Next Steps</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/post/wavy-slider-animation-using-jetpack-compose/">
+                
+                    <img src="/wavy-slider-animation-using-jetpack-compose/cover.png" loading="lazy" alt="Featured image of post Beyond the Straight Line: Crafting Wavy Sliders in Jetpack Compose" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/wavy-slider-animation-using-jetpack-compose/">Beyond the Straight Line: Crafting Wavy Sliders in Jetpack Compose</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Customizing Material3 for Unique Tracks, Thumbs, and Animations
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Dec 04, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    11 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="project-foundations">Project Foundations
+</h2><p>To begin customizing the Material3 Slider in Jetpack Compose, let&rsquo;s first set up the project and configure the necessary dependencies.</p>
+<p>In your <code>libs.versions.toml</code> file, add the following:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">versions</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">composeBom</span> <span class="p">=</span> <span class="s2">&#34;2024.11.00&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">libraries</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">androidx-compose-bom</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">group</span> <span class="p">=</span> <span class="s2">&#34;androidx.compose&#34;</span><span class="p">,</span> <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;compose-bom&#34;</span><span class="p">,</span> <span class="nx">version</span><span class="p">.</span><span class="nx">ref</span> <span class="p">=</span> <span class="s2">&#34;composeBom&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">androidx-material3</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">group</span> <span class="p">=</span> <span class="s2">&#34;androidx.compose.material3&#34;</span><span class="p">,</span> <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;material3&#34;</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>In your <code>build.gradle.kts</code>, make sure to include these dependencies:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">dependencies</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">implementation</span><span class="err">(</span><span class="nx">platform</span><span class="err">(</span><span class="nx">libs</span><span class="p">.</span><span class="nx">androidx</span><span class="p">.</span><span class="nx">compose</span><span class="p">.</span><span class="nx">bom</span><span class="err">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">implementation</span><span class="err">(</span><span class="nx">libs</span><span class="p">.</span><span class="nx">androidx</span><span class="p">.</span><span class="nx">material3</span><span class="err">)</span>
+</span></span><span class="line"><span class="cl">    <span class="err">//</span> <span class="nx">other</span> <span class="nx">dependencies</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This will ensure that you’re using the correct versions of Material3 and Jetpack Compose.</p>
+<p>We will use next colors as a base:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">val</span> <span class="py">AccentGreen</span> <span class="p">=</span> <span class="n">Color</span><span class="p">(</span><span class="m">0xFFa7c957</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="py">LightGreen</span> <span class="p">=</span> <span class="n">Color</span><span class="p">(</span><span class="m">0xFFf2e8cf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="py">BackgroundGreen</span> <span class="p">=</span> <span class="n">Color</span><span class="p">(</span><span class="m">0xFF386641</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>And this <code>Composable</code> as a base:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="nd">@Composable</span>
+</span></span><span class="line"><span class="cl"><span class="k">fun</span> <span class="nf">PlaybackSliderStart</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">modifier</span><span class="p">:</span> <span class="n">Modifier</span> <span class="p">=</span> <span class="n">Modifier</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">currentTime</span><span class="p">:</span> <span class="n">Long</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">totalDuration</span><span class="p">:</span> <span class="n">Long</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">onSliderPositionChange</span><span class="p">:</span> <span class="p">(</span><span class="n">Float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Unit</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">val</span> <span class="py">seekBarValue</span> <span class="p">=</span> <span class="k">if</span> <span class="p">(</span><span class="n">totalDuration</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="m">1f</span> <span class="p">/</span> <span class="n">totalDuration</span><span class="p">)</span> <span class="p">*</span> <span class="n">currentTime</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="m">0f</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">Row</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">modifier</span> <span class="p">=</span> <span class="n">modifier</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">fillMaxWidth</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">wrapContentHeight</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">verticalAlignment</span> <span class="p">=</span> <span class="nc">Alignment</span><span class="p">.</span><span class="n">CenterVertically</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="n">Text</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">text</span> <span class="p">=</span> <span class="n">getTimeString</span><span class="p">(</span><span class="n">currentTime</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">style</span> <span class="p">=</span> <span class="nc">MaterialTheme</span><span class="p">.</span><span class="n">typography</span><span class="p">.</span><span class="n">labelMedium</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">color</span> <span class="p">=</span> <span class="n">LightGreen</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Spacer</span><span class="p">(</span><span class="nc">Modifier</span><span class="p">.</span><span class="n">width</span><span class="p">(</span><span class="m">8.</span><span class="n">dp</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Slider</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">modifier</span> <span class="p">=</span> <span class="nc">Modifier</span><span class="p">.</span><span class="n">weight</span><span class="p">(</span><span class="m">1f</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="k">value</span> <span class="p">=</span> <span class="n">seekBarValue</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">onValueChange</span> <span class="p">=</span> <span class="n">onSliderPositionChange</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Spacer</span><span class="p">(</span><span class="nc">Modifier</span><span class="p">.</span><span class="n">width</span><span class="p">(</span><span class="m">8.</span><span class="n">dp</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Text</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">text</span> <span class="p">=</span> <span class="n">getTimeString</span><span class="p">(</span><span class="n">totalDuration</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">style</span> <span class="p">=</span> <span class="nc">MaterialTheme</span><span class="p">.</span><span class="n">typography</span><span class="p">.</span><span class="n">labelMedium</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">color</span> <span class="p">=</span> <span class="n">LightGreen</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">fun</span> <span class="nf">getTimeString</span><span class="p">(</span><span class="n">timeInMillis</span><span class="p">:</span> <span class="n">Long</span><span class="p">):</span> <span class="n">String</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">val</span> <span class="py">minutes</span> <span class="p">=</span> <span class="n">timeInMillis</span> <span class="p">/</span> <span class="m">60</span> <span class="p">/</span> <span class="m">1</span><span class="n">_000L</span>
+</span></span><span class="line"><span class="cl">    <span class="k">val</span> <span class="py">seconds</span> <span class="p">=</span> <span class="p">((</span><span class="n">timeInMillis</span> <span class="p">/</span> <span class="m">1</span><span class="n">_000f</span><span class="p">)</span> <span class="p">%</span> <span class="m">60</span><span class="p">).</span><span class="n">toInt</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nc">String</span><span class="p">.</span><span class="n">format</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="nc">Locale</span><span class="p">.</span><span class="n">getDefault</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;%02d:%02d&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">minutes</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">seconds</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p align="center"><img src="./default-slider.png" /></p>
+<p>With everything set up, you&rsquo;re ready to start customizing the Material3 Slider.</p>
+<h2 id="exploring-the-material3-slider">Exploring the Material3 Slider
+</h2><p>The basic structure of the <code>Slider</code> function looks like this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">fun</span> <span class="nf">Slider</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="k">value</span><span class="p">:</span> <span class="n">Float</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">onValueChange</span><span class="p">:</span> <span class="p">(</span><span class="n">Float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Unit</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">onValueChangeFinished</span><span class="p">:</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="n">Unit</span><span class="p">)?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="o">..</span><span class="p">.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">thumb</span><span class="p">:</span> <span class="nd">@Composable</span> <span class="p">(</span><span class="n">SliderState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Unit</span> <span class="p">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nc">SliderDefaults</span><span class="p">.</span><span class="n">Thumb</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">interactionSource</span> <span class="p">=</span> <span class="n">interactionSource</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">colors</span> <span class="p">=</span> <span class="n">colors</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">enabled</span> <span class="p">=</span> <span class="n">enabled</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="n">track</span><span class="p">:</span> <span class="nd">@Composable</span> <span class="p">(</span><span class="n">SliderState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Unit</span> <span class="p">=</span> <span class="p">{</span> <span class="n">sliderState</span> <span class="o">-&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nc">SliderDefaults</span><span class="p">.</span><span class="n">Track</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">colors</span> <span class="p">=</span> <span class="n">colors</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">enabled</span> <span class="p">=</span> <span class="n">enabled</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">sliderState</span> <span class="p">=</span> <span class="n">sliderState</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Here, we see that <code>thumb</code> and <code>track</code> are composable lambdas, which allows us to fully customize the slider’s appearance. You can replace these defaults with any custom composables that fit your design needs.</p>
+<p>Let’s begin with a simple modification: using <code>Canvas</code> to create a custom track for the slider.</p>
+<p>Inside the <code>Slider</code> composable, we’ll use the <code>Canvas</code> composable to draw a custom track. We will receive a <code>SliderState</code> inside the lambda, which contains the current value of the slider (ranging from <code>0f</code> to <code>1f</code>). Based on this value, we will draw two lines to represent the track.</p>
+<p>Here’s how you can draw the first line:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="n">drawLine</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">color</span> <span class="p">=</span> <span class="n">AccentGreen</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">start</span> <span class="p">=</span> <span class="n">Offset</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="n">canvasHeight</span> <span class="p">/</span> <span class="m">2</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">end</span> <span class="p">=</span> <span class="n">Offset</span><span class="p">(</span><span class="n">canvasWidth</span> <span class="p">*</span> <span class="n">state</span><span class="p">.</span><span class="k">value</span><span class="p">,</span> <span class="n">canvasHeight</span> <span class="p">/</span> <span class="m">2</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">strokeWidth</span> <span class="p">=</span> <span class="m">4.</span><span class="n">dp</span><span class="p">.</span><span class="n">toPx</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cap</span> <span class="p">=</span> <span class="nc">StrokeCap</span><span class="p">.</span><span class="n">Round</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This will draw the first part of the track up to the current value. Now, for the second part of the track, we’ll do something similar:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="n">drawLine</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">color</span> <span class="p">=</span> <span class="n">LightGreen</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">start</span> <span class="p">=</span> <span class="n">Offset</span><span class="p">(</span><span class="n">canvasWidth</span> <span class="p">*</span> <span class="n">state</span><span class="p">.</span><span class="k">value</span><span class="p">,</span> <span class="n">canvasHeight</span> <span class="p">/</span> <span class="m">2</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">end</span> <span class="p">=</span> <span class="n">Offset</span><span class="p">(</span><span class="n">canvasWidth</span><span class="p">,</span> <span class="n">canvasHeight</span> <span class="p">/</span> <span class="m">2</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">strokeWidth</span> <span class="p">=</span> <span class="m">4.</span><span class="n">dp</span><span class="p">.</span><span class="n">toPx</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cap</span> <span class="p">=</span> <span class="nc">StrokeCap</span><span class="p">.</span><span class="n">Round</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>By combining these two lines, we get a slider with a two-toned track based on the current slider value.</p>
+<p>Here’s the full implementation of the custom track:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="n">Slider</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">modifier</span> <span class="p">=</span> <span class="nc">Modifier</span><span class="p">.</span><span class="n">weight</span><span class="p">(</span><span class="m">1f</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="k">value</span> <span class="p">=</span> <span class="n">seekBarValue</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">onValueChange</span> <span class="p">=</span> <span class="n">onSliderPositionChange</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">track</span> <span class="p">=</span> <span class="p">{</span> <span class="n">state</span> <span class="o">-&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Canvas</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">modifier</span> <span class="p">=</span> <span class="n">Modifier</span>
+</span></span><span class="line"><span class="cl">                <span class="p">.</span><span class="n">fillMaxWidth</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                <span class="p">.</span><span class="n">height</span><span class="p">(</span><span class="m">4.</span><span class="n">dp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">val</span> <span class="py">canvasWidth</span> <span class="p">=</span> <span class="n">size</span><span class="p">.</span><span class="n">width</span>
+</span></span><span class="line"><span class="cl">            <span class="k">val</span> <span class="py">canvasHeight</span> <span class="p">=</span> <span class="n">size</span><span class="p">.</span><span class="n">height</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">// Draw the first segment of the track
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">drawLine</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                <span class="n">color</span> <span class="p">=</span> <span class="n">AccentGreen</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">start</span> <span class="p">=</span> <span class="n">Offset</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="n">canvasHeight</span> <span class="p">/</span> <span class="m">2</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">end</span> <span class="p">=</span> <span class="n">Offset</span><span class="p">((</span><span class="n">canvasWidth</span> <span class="p">*</span> <span class="n">state</span><span class="p">.</span><span class="k">value</span><span class="p">),</span> <span class="n">canvasHeight</span> <span class="p">/</span> <span class="m">2</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">strokeWidth</span> <span class="p">=</span> <span class="m">4.</span><span class="n">dp</span><span class="p">.</span><span class="n">toPx</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cap</span> <span class="p">=</span> <span class="nc">StrokeCap</span><span class="p">.</span><span class="n">Round</span>
+</span></span><span class="line"><span class="cl">            <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">// Draw the second segment of the track
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">drawLine</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                <span class="n">color</span> <span class="p">=</span> <span class="n">LightGreen</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">start</span> <span class="p">=</span> <span class="n">Offset</span><span class="p">((</span><span class="n">canvasWidth</span> <span class="p">*</span> <span class="n">state</span><span class="p">.</span><span class="k">value</span><span class="p">),</span> <span class="n">canvasHeight</span> <span class="p">/</span> <span class="m">2</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">end</span> <span class="p">=</span> <span class="n">Offset</span><span class="p">((</span><span class="n">canvasWidth</span><span class="p">),</span> <span class="n">canvasHeight</span> <span class="p">/</span> <span class="m">2</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">strokeWidth</span> <span class="p">=</span> <span class="m">4.</span><span class="n">dp</span><span class="p">.</span><span class="n">toPx</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cap</span> <span class="p">=</span> <span class="nc">StrokeCap</span><span class="p">.</span><span class="n">Round</span>
+</span></span><span class="line"><span class="cl">            <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The end result is a slider with a visually distinct track that dynamically updates as the slider value changes.</p>
+<p>The Material3 <code>Slider</code> provides a <code>thumb</code> parameter, which allows you to define a custom composable for the thumb. The composable receives the slider&rsquo;s current state (<code>SliderState</code>) and can dynamically adjust its appearance based on the
+slider’s position.</p>
+<p>When customizing the slider, sometimes less is more. While there are plenty of creative ways to design a slider thumb, a simple, elegant approach can often be just as effective.</p>
+<p>Here’s the implementation:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="n">Slider</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="k">value</span> <span class="p">=</span> <span class="n">seekBarValue</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">onValueChange</span> <span class="p">=</span> <span class="n">onSliderPositionChange</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">thumb</span> <span class="p">=</span> <span class="p">{</span> <span class="n">state</span> <span class="o">-&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Box</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">modifier</span> <span class="p">=</span> <span class="n">Modifier</span>
+</span></span><span class="line"><span class="cl">                <span class="p">.</span><span class="n">background</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">color</span> <span class="p">=</span> <span class="n">AccentGreen</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">shape</span> <span class="p">=</span> <span class="n">CircleShape</span>
+</span></span><span class="line"><span class="cl">                <span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">.</span><span class="n">size</span><span class="p">(</span><span class="m">24.</span><span class="n">dp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This design will keep the focus on our wavy track while ensuring the thumb is easy to spot and interact with. The simplicity also makes it adaptable to various themes and use cases without overwhelming the overall slider design.</p>
+<p align="center"><img src="./simple-slider.png" /></p>
+<h2 id="the-mathematics-of-waves">The Mathematics of Waves
+</h2><p>Let&rsquo;s break down the mathematics behind the wavy track in our custom slider. The key here is using a sinusoidal function to create a smooth, oscillating path. By understanding the math, we can tweak the wave’s appearance and behavior to our liking.</p>
+<p align="center"><img src="./wave-mathematics.png" /></p>
+<p>To create a wavy path, we use a sine wave, which is a periodic oscillation described by the sine function:</p>
+$$y(x) = A \cdot \sin(k \cdot x + \phi)$$<p>Where:</p>
+<ul>
+<li>$A$ is the amplitude (height) of the wave.</li>
+<li>$k$ is the wave number, which is related to the wavelength.</li>
+<li>$\phi$ is the phase shift, which allows us to offset the wave.</li>
+<li>$x$ is the horizontal position.</li>
+</ul>
+<p>In our case, we are using this formula to calculate the vertical position of each point on the track, based on its horizontal position $x$ (in pixels).</p>
+<p>Let’s go step by step.</p>
+<p>The amplitude controls the vertical height of the wave. In our code, we define it as:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">val</span> <span class="py">amplitude</span> <span class="p">=</span> <span class="m">3.</span><span class="n">dp</span><span class="p">.</span><span class="n">toPx</span><span class="p">()</span>  <span class="c1">// Wave height
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>This means the wave will oscillate up and down by <code>3.dp</code> in pixel units.</p>
+<p>The wavelength is the length of one full cycle of the wave, i.e., the distance between two consecutive peaks (or troughs). In our code, it’s defined as:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">val</span> <span class="py">wavelength</span> <span class="p">=</span> <span class="n">canvasWidth</span> <span class="p">/</span> <span class="m">10</span>  <span class="c1">// Length of one wave cycle
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>This means the wave will repeat every <code>canvasWidth / 10</code> units, which will determine how many waves fit in the slider track.</p>
+<p>For each horizontal position $x$, we calculate the corresponding vertical position $y$ using the sine function:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">val</span> <span class="py">angle</span> <span class="p">=</span> <span class="p">((</span><span class="n">x</span> <span class="p">/</span> <span class="n">waveLength</span><span class="p">)</span> <span class="p">*</span> <span class="m">2</span> <span class="p">*</span> <span class="n">PI</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="py">y</span> <span class="p">=</span> <span class="p">(</span><span class="n">canvasHeight</span> <span class="p">/</span> <span class="m">2</span><span class="p">)</span> <span class="p">+</span> <span class="n">amplitude</span> <span class="p">*</span> <span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">).</span><span class="n">toFloat</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>The angle for the sine function is determined by the horizontal position $x$. The term $(x/waveLength)$ normalizes the position along the wave’s cycle, and multiplying by
+$2π$ (the full period of a sine wave) ensures the wave repeats every full cycle.</li>
+<li>The vertical position $y$ is the middle of the canvas (height divided by 2) plus the sine value, scaled by the amplitude. This causes the wave to oscillate above and below the center of the track.</li>
+</ul>
+<h2 id="crafting-a-wavy-track">Crafting a Wavy Track
+</h2><p>With the mathematical foundation in place, it&rsquo;s time to craft our wavy slider track.</p>
+<p align="center"><img src="./wavy-slider.png" /></p>
+<p>The core of our wavy track lies in the <code>Path</code> object, where we translate the sine wave math from the previous chapter into drawable instructions. Here&rsquo;s how we create the path:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">val</span> <span class="py">amplitude</span> <span class="p">=</span> <span class="m">3.</span><span class="n">dp</span><span class="p">.</span><span class="n">toPx</span><span class="p">()</span>  <span class="c1">// Wave height
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">val</span> <span class="py">waveLength</span> <span class="p">=</span> <span class="n">canvasWidth</span> <span class="p">/</span> <span class="m">10</span>  <span class="c1">// Length of one wave cycle
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="py">path</span> <span class="p">=</span> <span class="n">Path</span><span class="p">().</span><span class="n">apply</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">x</span> <span class="k">in</span> <span class="m">0.</span><span class="p">.(</span><span class="n">canvasWidth</span> <span class="p">*</span> <span class="n">state</span><span class="p">.</span><span class="k">value</span><span class="p">).</span><span class="n">toInt</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">val</span> <span class="py">angle</span> <span class="p">=</span> <span class="p">((</span><span class="n">x</span> <span class="p">/</span> <span class="n">waveLength</span><span class="p">)</span> <span class="p">*</span> <span class="m">2</span> <span class="p">*</span> <span class="n">PI</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">val</span> <span class="py">y</span> <span class="p">=</span> <span class="p">(</span><span class="n">canvasHeight</span> <span class="p">/</span> <span class="m">2</span><span class="p">)</span> <span class="p">+</span> <span class="n">amplitude</span> <span class="p">*</span> <span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">).</span><span class="n">toFloat</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="m">0</span><span class="p">)</span> <span class="n">moveTo</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">toFloat</span><span class="p">(),</span> <span class="n">y</span><span class="p">)</span> <span class="k">else</span> <span class="n">lineTo</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">toFloat</span><span class="p">(),</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The amplitude sets the height of the wave, while the wavelength determines how frequently it oscillates across the slider track. As the slider moves, the wave&rsquo;s length dynamically adapts to the slider&rsquo;s current value (<code>state.value</code>), ensuring a seamless transition. The path is formed by beginning at an initial point with <code>moveTo</code> and smoothly connecting each subsequent point using <code>lineTo</code>, resulting in a continuous and flowing wave.</p>
+<p>Now that we have the path, let’s integrate it into the slider track using a <code>Canvas</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="n">Canvas</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">modifier</span> <span class="p">=</span> <span class="n">Modifier</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="n">fillMaxWidth</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="n">height</span><span class="p">(</span><span class="m">8.</span><span class="n">dp</span><span class="p">)</span>  <span class="c1">// Height of the track
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">val</span> <span class="py">canvasWidth</span> <span class="p">=</span> <span class="n">size</span><span class="p">.</span><span class="n">width</span>
+</span></span><span class="line"><span class="cl">    <span class="k">val</span> <span class="py">canvasHeight</span> <span class="p">=</span> <span class="n">size</span><span class="p">.</span><span class="n">height</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Draw the wavy segment of the track
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">drawPath</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">path</span> <span class="p">=</span> <span class="n">path</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">color</span> <span class="p">=</span> <span class="n">AccentGreen</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">style</span> <span class="p">=</span> <span class="n">Stroke</span><span class="p">(</span><span class="n">width</span> <span class="p">=</span> <span class="m">4.</span><span class="n">dp</span><span class="p">.</span><span class="n">toPx</span><span class="p">(),</span> <span class="n">cap</span> <span class="p">=</span> <span class="nc">StrokeCap</span><span class="p">.</span><span class="n">Round</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// Draw the straight segment of the track
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">drawLine</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">color</span> <span class="p">=</span> <span class="n">LightGreen</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">start</span> <span class="p">=</span> <span class="n">Offset</span><span class="p">((</span><span class="n">canvasWidth</span> <span class="p">*</span> <span class="n">state</span><span class="p">.</span><span class="k">value</span><span class="p">),</span> <span class="n">canvasHeight</span> <span class="p">/</span> <span class="m">2</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">end</span> <span class="p">=</span> <span class="n">Offset</span><span class="p">((</span><span class="n">canvasWidth</span><span class="p">),</span> <span class="n">canvasHeight</span> <span class="p">/</span> <span class="m">2</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">strokeWidth</span> <span class="p">=</span> <span class="m">4.</span><span class="n">dp</span><span class="p">.</span><span class="n">toPx</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cap</span> <span class="p">=</span> <span class="nc">StrokeCap</span><span class="p">.</span><span class="n">Round</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="animating-the-wave">Animating the Wave
+</h2><p>A wavy slider track is already visually striking, but adding animation can elevate the experience, creating a more dynamic and engaging interaction.</p>
+<p align="center"><img src="./wavy-slider-animated.gif" /></p>
+<p>To animate the wave, we’ll use the <code>rememberInfiniteTransition</code> API to create a smoothly varying offset. This offset will shift the wave horizontally, simulating the effect of a wave flowing endlessly along the slider track.</p>
+<p>Here’s how we can implement it:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">val</span> <span class="py">infiniteTransition</span> <span class="p">=</span> <span class="n">rememberInfiniteTransition</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">val</span> <span class="py">waveOffset</span> <span class="k">by</span> <span class="n">infiniteTransition</span><span class="p">.</span><span class="n">animateFloat</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">initialValue</span> <span class="p">=</span> <span class="m">0f</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">targetValue</span> <span class="p">=</span> <span class="m">2</span> <span class="p">*</span> <span class="nc">Math</span><span class="p">.</span><span class="nc">PI</span><span class="p">.</span><span class="n">toFloat</span><span class="p">(),</span> <span class="c1">// One full wave cycle
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">animationSpec</span> <span class="p">=</span> <span class="n">infiniteRepeatable</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">animation</span> <span class="p">=</span> <span class="n">tween</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">durationMillis</span> <span class="p">=</span> <span class="m">2000</span><span class="p">,</span> <span class="c1">// Adjust speed
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">easing</span> <span class="p">=</span> <span class="n">LinearEasing</span>
+</span></span><span class="line"><span class="cl">        <span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">repeatMode</span> <span class="p">=</span> <span class="nc">RepeatMode</span><span class="p">.</span><span class="n">Restart</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The <code>waveOffset</code> value will be used in the mathematical calculation of the wave&rsquo;s path to create the illusion of motion.</p>
+<p>To integrate the animation into the wave path, we’ll modify the existing path logic to factor in the <code>waveOffset</code> value:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">val</span> <span class="py">path</span> <span class="p">=</span> <span class="n">Path</span><span class="p">().</span><span class="n">apply</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">x</span> <span class="k">in</span> <span class="m">0.</span><span class="p">.(</span><span class="n">canvasWidth</span> <span class="p">*</span> <span class="n">state</span><span class="p">.</span><span class="k">value</span><span class="p">).</span><span class="n">toInt</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">val</span> <span class="py">angle</span> <span class="p">=</span> <span class="p">((</span><span class="n">x</span> <span class="p">/</span> <span class="n">waveLength</span><span class="p">)</span> <span class="p">*</span> <span class="m">2</span> <span class="p">*</span> <span class="nc">Math</span><span class="p">.</span><span class="n">PI</span><span class="p">)</span> <span class="p">+</span> <span class="n">waveOffset</span>
+</span></span><span class="line"><span class="cl">        <span class="k">val</span> <span class="py">y</span> <span class="p">=</span> <span class="p">(</span><span class="n">canvasHeight</span> <span class="p">/</span> <span class="m">2</span><span class="p">)</span> <span class="p">+</span> <span class="n">amplitude</span> <span class="p">*</span> <span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">).</span><span class="n">toFloat</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="m">0</span><span class="p">)</span> <span class="n">moveTo</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">toFloat</span><span class="p">(),</span> <span class="n">y</span><span class="p">)</span> <span class="k">else</span> <span class="n">lineTo</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">toFloat</span><span class="p">(),</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The <code>waveOffset</code> ensures that the wave appears to be moving while maintaining its shape.</p>
+<p>Here’s the complete code for the animated wave:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="nd">@Composable</span>
+</span></span><span class="line"><span class="cl"><span class="k">fun</span> <span class="nf">PlaybackSlider</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">modifier</span><span class="p">:</span> <span class="n">Modifier</span> <span class="p">=</span> <span class="n">Modifier</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">currentTime</span><span class="p">:</span> <span class="n">Long</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">totalDuration</span><span class="p">:</span> <span class="n">Long</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">onSliderPositionChange</span><span class="p">:</span> <span class="p">(</span><span class="n">Float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Unit</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">val</span> <span class="py">waveOffset</span> <span class="p">=</span> <span class="n">remember</span> <span class="p">{</span> <span class="n">Animatable</span><span class="p">(</span><span class="m">0f</span><span class="p">)</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">val</span> <span class="py">seekBarValue</span> <span class="p">=</span> <span class="n">remember</span><span class="p">(</span><span class="n">currentTime</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">totalDuration</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="p">(</span><span class="m">1f</span> <span class="p">/</span> <span class="n">totalDuration</span><span class="p">)</span> <span class="p">*</span> <span class="n">currentTime</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="m">0f</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">LaunchedEffect</span><span class="p">(</span><span class="k">true</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">waveOffset</span><span class="p">.</span><span class="n">animateTo</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">targetValue</span> <span class="p">=</span> <span class="m">2</span> <span class="p">*</span> <span class="nc">PI</span><span class="p">.</span><span class="n">toFloat</span><span class="p">(),</span> <span class="c1">// One full cycle
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">animationSpec</span> <span class="p">=</span> <span class="n">infiniteRepeatable</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                <span class="n">animation</span> <span class="p">=</span> <span class="n">tween</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">durationMillis</span> <span class="p">=</span> <span class="m">2000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">easing</span> <span class="p">=</span> <span class="n">LinearEasing</span>
+</span></span><span class="line"><span class="cl">                <span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">repeatMode</span> <span class="p">=</span> <span class="nc">RepeatMode</span><span class="p">.</span><span class="n">Restart</span>
+</span></span><span class="line"><span class="cl">            <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">Row</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">modifier</span> <span class="p">=</span> <span class="n">modifier</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">fillMaxWidth</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">wrapContentHeight</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">verticalAlignment</span> <span class="p">=</span> <span class="nc">Alignment</span><span class="p">.</span><span class="n">CenterVertically</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Text</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">text</span> <span class="p">=</span> <span class="n">getTimeString</span><span class="p">(</span><span class="n">currentTime</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">style</span> <span class="p">=</span> <span class="nc">MaterialTheme</span><span class="p">.</span><span class="n">typography</span><span class="p">.</span><span class="n">labelMedium</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">color</span> <span class="p">=</span> <span class="n">LightGreen</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Spacer</span><span class="p">(</span><span class="nc">Modifier</span><span class="p">.</span><span class="n">width</span><span class="p">(</span><span class="m">8.</span><span class="n">dp</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Slider</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">modifier</span> <span class="p">=</span> <span class="nc">Modifier</span><span class="p">.</span><span class="n">weight</span><span class="p">(</span><span class="m">1f</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="k">value</span> <span class="p">=</span> <span class="n">seekBarValue</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">onValueChange</span> <span class="p">=</span> <span class="n">onSliderPositionChange</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">track</span> <span class="p">=</span> <span class="p">{</span> <span class="n">state</span> <span class="o">-&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Canvas</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">modifier</span> <span class="p">=</span> <span class="n">Modifier</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">.</span><span class="n">fillMaxWidth</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">.</span><span class="n">height</span><span class="p">(</span><span class="m">6.</span><span class="n">dp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">val</span> <span class="py">canvasWidth</span> <span class="p">=</span> <span class="n">size</span><span class="p">.</span><span class="n">width</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">val</span> <span class="py">canvasHeight</span> <span class="p">=</span> <span class="n">size</span><span class="p">.</span><span class="n">height</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">val</span> <span class="py">amplitude</span> <span class="p">=</span> <span class="m">3.</span><span class="n">dp</span><span class="p">.</span><span class="n">toPx</span><span class="p">()</span>  <span class="c1">// Wave height
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="k">val</span> <span class="py">wavelength</span> <span class="p">=</span> <span class="n">canvasWidth</span> <span class="p">/</span> <span class="m">10</span>  <span class="c1">// Length of one wave cycle
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">                    <span class="k">val</span> <span class="py">path</span> <span class="p">=</span> <span class="n">Path</span><span class="p">().</span><span class="n">apply</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">for</span> <span class="p">(</span><span class="n">x</span> <span class="k">in</span> <span class="m">0.</span><span class="p">.(</span><span class="n">canvasWidth</span> <span class="p">*</span> <span class="n">state</span><span class="p">.</span><span class="k">value</span><span class="p">).</span><span class="n">toInt</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                            <span class="k">val</span> <span class="py">angle</span> <span class="p">=</span> <span class="p">((</span><span class="n">x</span> <span class="p">/</span> <span class="n">wavelength</span><span class="p">)</span> <span class="p">*</span> <span class="m">2</span> <span class="p">*</span> <span class="n">PI</span><span class="p">)</span> <span class="p">+</span> <span class="n">waveOffset</span><span class="p">.</span><span class="k">value</span>  <span class="c1">// Apply smooth offset
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                            <span class="k">val</span> <span class="py">y</span> <span class="p">=</span> <span class="p">(</span><span class="n">canvasHeight</span> <span class="p">/</span> <span class="m">2</span><span class="p">)</span> <span class="p">+</span> <span class="n">amplitude</span> <span class="p">*</span> <span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">).</span><span class="n">toFloat</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                            <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="m">0</span><span class="p">)</span> <span class="n">moveTo</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">toFloat</span><span class="p">(),</span> <span class="n">y</span><span class="p">)</span> <span class="k">else</span> <span class="n">lineTo</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">toFloat</span><span class="p">(),</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="n">drawPath</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">path</span> <span class="p">=</span> <span class="n">path</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">color</span> <span class="p">=</span> <span class="n">AccentGreen</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">style</span> <span class="p">=</span> <span class="n">Stroke</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">width</span> <span class="p">=</span> <span class="m">4.</span><span class="n">dp</span><span class="p">.</span><span class="n">toPx</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">cap</span> <span class="p">=</span> <span class="nc">StrokeCap</span><span class="p">.</span><span class="n">Round</span>  
+</span></span><span class="line"><span class="cl">                        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="n">drawLine</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">LightGreen</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">Offset</span><span class="p">((</span><span class="n">canvasWidth</span> <span class="p">*</span> <span class="n">state</span><span class="p">.</span><span class="k">value</span><span class="p">),</span> <span class="n">canvasHeight</span> <span class="p">/</span> <span class="m">2</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">Offset</span><span class="p">((</span><span class="n">canvasWidth</span><span class="p">),</span> <span class="n">canvasHeight</span> <span class="p">/</span> <span class="m">2</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">strokeWidth</span> <span class="p">=</span> <span class="m">4.</span><span class="n">dp</span><span class="p">.</span><span class="n">toPx</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">cap</span> <span class="p">=</span> <span class="nc">StrokeCap</span><span class="p">.</span><span class="n">Round</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="n">thumb</span> <span class="p">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Box</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">modifier</span> <span class="p">=</span> <span class="n">Modifier</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">.</span><span class="n">background</span><span class="p">(</span><span class="n">AccentGreen</span><span class="p">,</span> <span class="n">shape</span> <span class="p">=</span> <span class="n">CircleShape</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">.</span><span class="n">size</span><span class="p">(</span><span class="m">24.</span><span class="n">dp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Spacer</span><span class="p">(</span><span class="nc">Modifier</span><span class="p">.</span><span class="n">width</span><span class="p">(</span><span class="m">8.</span><span class="n">dp</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Text</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">text</span> <span class="p">=</span> <span class="n">getTimeString</span><span class="p">(</span><span class="n">totalDuration</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">style</span> <span class="p">=</span> <span class="nc">MaterialTheme</span><span class="p">.</span><span class="n">typography</span><span class="p">.</span><span class="n">labelMedium</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">color</span> <span class="p">=</span> <span class="n">LightGreen</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The parameters of the animation can be adjusted to fine-tune the effect:</p>
+<ul>
+<li><code>durationMillis</code>: Controls the speed of the wave. Decrease for faster motion or increase for slower motion.</li>
+<li><code>amplitude</code>: Adjusts the wave’s height for more dramatic or subtle movement.</li>
+<li><code>waveLength</code>: Changes the frequency of the wave cycles.</li>
+</ul>
+<h2 id="final-thoughts-and-next-steps">Final Thoughts and Next Steps
+</h2><p>Congratulations! You’ve built a fully functional, visually engaging slider using Jetpack Compose, complete with a custom wavy track, animated motion, and a minimalist thumb.</p>
+<p>Your slider is already a great starting point, but here are some ways to make it even more unique:</p>
+<ul>
+<li>Expose <code>amplitude</code>, <code>waveLength</code>, and <code>durationMillis</code> as parameters to allow runtime adjustments.</li>
+<li>Add subtle animations, such as scaling or color changes, to the thumb when interacting with it.</li>
+<li>Replace the sine wave with other patterns (e.g., square waves or custom paths) to suit your app’s purpose.</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            Last updated on Dec 04, 2024
+        </span>
+    </section></footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 Ruslan Kishai
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.29.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
